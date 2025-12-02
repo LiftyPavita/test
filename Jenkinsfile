@@ -10,9 +10,10 @@ pipeline {
 
         stage('Run PHP') {
             steps {
-                script {
-                    powershell 'php index.php'
-                }
+                powershell """
+                    \$phpPath = "\${env.WORKSPACE}\\php\\php.exe"
+                    & \$phpPath "\${env.WORKSPACE}\\index.php"
+                """
             }
         }
     }
