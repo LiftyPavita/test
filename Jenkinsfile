@@ -4,15 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm
+                git url: 'https://github.com/LiftyPavita/test.git', branch: 'main'
             }
         }
 
         stage('Run PHP') {
             steps {
                 powershell """
-                    \$phpPath = "\${env.WORKSPACE}\\php\\php.exe"
-                    & \$phpPath "\${env.WORKSPACE}\\index.php"
+                    php "${env.WORKSPACE}/index.php"
                 """
             }
         }
