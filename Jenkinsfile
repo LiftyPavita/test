@@ -4,15 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/LiftyPavita/test.git', branch: 'main'
+                git branch: 'main',
+                    url: 'https://github.com/LiftyPavita/test.git'
             }
         }
 
         stage('Run PHP') {
             steps {
-                powershell """
-                    php "${env.WORKSPACE}/index.php"
-                """
+                powershell 'php index.php'
             }
         }
     }
